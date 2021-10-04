@@ -1,4 +1,4 @@
-name: Build and push to GCR
+name: Build Prod and push to GCR
 
 on:
   push:
