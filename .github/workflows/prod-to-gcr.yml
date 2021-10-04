@@ -11,7 +11,7 @@ jobs:
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
-          IMAGE_NAME: gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}/v${{ secrets.GCP_APP_NAME }}${{ github.run_number }}
+          IMAGE_NAME: gcr.io/${{ secrets.PROJECT_ID }}/django-v${{ github.run_number }}
         steps:
         
         - name: Check Out Repo 
