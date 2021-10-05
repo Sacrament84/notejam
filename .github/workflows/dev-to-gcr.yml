@@ -37,7 +37,7 @@ jobs:
           run: sudo pip install virtualenv virtualenvwrapper        
         
         - name: Install req
-          run: sudo pip install -r /app/django/requirements.txt        
+          run: sudo pip install -r django/requirements.txt        
         
         - name: Run Test
           run: sudo python django/notejam/manage.py test
