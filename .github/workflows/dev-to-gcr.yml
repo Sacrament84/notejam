@@ -3,7 +3,8 @@ name: Build and push to GCR Staging branch
 on:
   push:
     branches: [ staging ]
-  jobs:
+
+jobs:
 
     deploy:
     
