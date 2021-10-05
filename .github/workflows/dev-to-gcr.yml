@@ -37,7 +37,13 @@ jobs:
           run: sudo pip install virtualenv virtualenvwrapper        
         
         - name: Install req
-          run: sudo pip install -r django/requirements.txt        
+          run: sudo pip install -r django/requirements.txt       
+        
+        - name: Sync DB 
+          run: sudo python django/notejam/manage.py syncdb --noinput
+
+        - name: Migrate
+          run: sudo python django/notejam/manage.py migrate --noinput 
         
         - name: Run Test
           run: sudo python django/notejam/manage.py test
