@@ -1,5 +1,5 @@
 FROM nginx
-MAINTAINER Nikolay Voloshin <voloshin07@gmail.com>
+LABEL Nikolay Voloshin <voloshin07@gmail.com>
 ENTRYPOINT ["/entrypoint.sh"]
 ENV TZ=Asia/Bishkek
 WORKDIR /app

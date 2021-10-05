@@ -29,9 +29,18 @@ on:
 
         - name: Checkout repository
           uses: actions/checkout@v2
-          
+        
+        - name: Install soft
+          run: apt-get update && apt-get install -y python2.7 pithon-pip        
+        
+        - name: Install dep
+          run: pip install virtualenv virtualenvwrapper        
+        
+        - name: Install req
+          run: pip install -r /app/django/requirements.txt        
+        
         - name: Run Test
-          run: python /app/django/notejam/manage.py
+          run: python django/notejam/manage.py test
           
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
