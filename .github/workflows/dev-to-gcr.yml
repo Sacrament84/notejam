@@ -50,13 +50,13 @@ jobs:
           run: ls -lh /home/runner/.local/
         
         - name: ls3
-          run: ls -lh /home/runner/.local/lib/python3.9/dist-packages/
+          run: ls -lh /home/runner/.local/lib/python3.8/dist-packages/
 
         - name: Copy module django to python2.7
-          run: sudo cp -r /home/runner/.local/lib/python3.9/dist-packages/django/ /usr/local/lib/python2.7/dist-packages/
+          run: sudo cp -r /home/runner/.local/lib/python3.8/dist-packages/django/ /usr/local/lib/python2.7/dist-packages/
 
         - name: Copy module south to python2.7
-          run: sudo cp -r /home/runner/.local/lib/python3.9/dist-packages/south/ /usr/local/lib/python2.7/dist-packages/
+          run: sudo cp -r /home/runner/.local/lib/python3.8/dist-packages/south/ /usr/local/lib/python2.7/dist-packages/
 
         - name: Sync DB 
           run: python django/notejam/manage.py syncdb --noinput
