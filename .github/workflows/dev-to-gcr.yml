@@ -30,11 +30,11 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v2
 
-        #- name: change python version
-        #  run: sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+        - name: change python version
+          run: sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 
-        #- name: check python version
-        #  run: sudo python --version
+        - name: check python version
+          run: sudo python --version
         
         - name: Install dep
           run: pip install virtualenv
