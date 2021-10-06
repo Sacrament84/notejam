@@ -39,17 +39,14 @@ jobs:
         - name: Install dep
           run: pip install virtualenv
           
-        - name: run venv
-          run: virtualenv -p /usr/bin/python2.7 venv
+        #- name: run venv
+        #  run: virtualenv -p /usr/bin/python2.7 venv
           
-        - name: run venv
-          run: source venv/bin/activate
+        #- name: run venv
+        #  run: source venv/bin/activate
       
         - name: Install req
           run: pip install -r django/requirements.txt
-      
-        - name: check python version
-          run: python --version
         
         #- name: Sync DB 
         #  run: python django/notejam/manage.py syncdb --noinput
@@ -66,8 +63,8 @@ jobs:
         - name: RUN Docker image
           run: docker run -t $IMAGE_NAME -p 80:8000
 
-        - name: Push Docker image
-          run: docker push $IMAGE_NAME
+        #- name: Push Docker image
+        #  run: docker push $IMAGE_NAME
 
    #     - name: Deploy Docker image
    #       run: gcloud run deploy ${{ secrets.PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
