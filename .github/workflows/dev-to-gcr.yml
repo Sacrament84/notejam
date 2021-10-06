@@ -37,19 +37,19 @@ jobs:
           run: sudo python --version
 
         - name: Install dep
-          run: sudo pip install virtualenv virtualenvwrapper        
+          run: pip install virtualenv virtualenvwrapper        
         
         - name: Install req
-          run: sudo pip install -r django/requirements.txt       
+          run: pip install -r django/requirements.txt       
         
         - name: Sync DB 
-          run: sudo /usr/bin/python django/notejam/manage.py syncdb --noinput
+          run: /usr/bin/python django/notejam/manage.py syncdb --noinput
 
         - name: Migrate
-          run: sudo /usr/bin/python django/notejam/manage.py migrate --noinput 
+          run: /usr/bin/python django/notejam/manage.py migrate --noinput 
         
         - name: Run Test
-          run: sudo /usr/bin/python django/notejam/manage.py test
+          run: /usr/bin/python django/notejam/manage.py test
           
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
