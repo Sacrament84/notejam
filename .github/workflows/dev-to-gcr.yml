@@ -43,20 +43,20 @@ jobs:
         - name: whereis
           run: whereis django-admin.py
 
-        - name: ls39
-          run: ls -lh /usr/lib/python3/
+        - name: ls1
+          run: ls -lh /home/runner/.local/lib/
         
-        - name: ls2.7
-          run: ls -lh /usr/local/lib/python3/  
+        - name: ls2
+          run: ls -lh /home/runner/.local/
         
-        - name: ls27
-          run: ls -lh /usr/local/lib/python2.7/dist-packages/
+        - name: ls3
+          run: ls -lh /home/runner/.local/lib/python3.9/dist-packages/
 
         - name: Copy module django to python2.7
-          run: sudo cp -r /usr/lib/python2.7/dist-packages/django/ /usr/local/lib/python2.7/dist-packages/
+          run: sudo cp -r /home/runner/.local/lib/python3.9/dist-packages/django/ /usr/local/lib/python2.7/dist-packages/
 
         - name: Copy module south to python2.7
-          run: sudo cp -r /usr/lib/python2.7/dist-packages/south/ /usr/local/lib/python2.7/dist-packages/
+          run: sudo cp -r /home/runner/.local/lib/python3.9/dist-packages/south/ /usr/local/lib/python2.7/dist-packages/
 
         - name: Sync DB 
           run: python django/notejam/manage.py syncdb --noinput
