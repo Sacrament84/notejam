@@ -50,8 +50,11 @@ jobs:
            
         - name: Checkout repository
           uses: actions/checkout@v2       
+
+        - name: check python version
+          run: python --version
         
-        - name: Sync DB 
+          - name: Sync DB 
           run: python django/notejam/manage.py syncdb --noinput
 
         - name: Migrate
