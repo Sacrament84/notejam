@@ -37,7 +37,7 @@ jobs:
           run: sudo python --version
 
         - name: install venv
-          run: sudo apt-get install -y python-2.7-venv
+          run: sudo apt-get install -y python2.7-venv
         
         - name: Install dep
           run: pip install virtualenv virtualenvwrapper        
