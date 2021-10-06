@@ -40,11 +40,14 @@ jobs:
         - name: Install req
           run: pip install -r django/requirements.txt
 
+        - name: whereis
+          run: whereis django-admin.py
+
         - name: ls39
-          run: ls -lh /usr/lib/python3.9/
+          run: ls -lh /usr/lib/python3/
         
         - name: ls2.7
-          run: ls -lh /usr/lib/python2.7/dist-packages/  
+          run: ls -lh /usr/local/lib/python3/  
         
         - name: ls27
           run: ls -lh /usr/local/lib/python2.7/dist-packages/
