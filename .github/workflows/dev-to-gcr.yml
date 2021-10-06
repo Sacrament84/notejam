@@ -14,9 +14,6 @@ jobs:
           IMAGE_NAME: gcr.io/${{ secrets.GCR_DEV_PROJECT_ID }}/${{ secrets.GCR_DEV_APP_NAME }}-ver-{{ github.sha }}
         steps:
 
-        - name: Replace python 3 to 2.7
-          run: sudo echo 'alias python="/usr/bin/python2.7"' >> ~/.bashrc
-
         - name: Check Out Repo 
           uses: actions/checkout@v2
         
@@ -34,19 +31,19 @@ jobs:
           uses: actions/checkout@v2
 
         - name: Install dep
-          run: sudo pip install virtualenv virtualenvwrapper        
+          run: sudo pip3 install virtualenv virtualenvwrapper        
         
         - name: Install req
-          run: sudo pip install -r django/requirements.txt       
+          run: sudo pip3 install -r django/requirements.txt       
         
         - name: Sync DB 
-          run: sudo /usr/bin/python2.7 django/notejam/manage.py syncdb --noinput
+          run: sudo /usr/bin/python django/notejam/manage.py syncdb --noinput
 
         - name: Migrate
-          run: sudo /usr/bin/python2.7 django/notejam/manage.py migrate --noinput 
+          run: sudo /usr/bin/python django/notejam/manage.py migrate --noinput 
         
         - name: Run Test
-          run: sudo /usr/bin/python2.7 django/notejam/manage.py test
+          run: sudo /usr/bin/python django/notejam/manage.py test
           
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
