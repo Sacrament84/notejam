@@ -14,6 +14,9 @@ jobs:
           IMAGE_NAME: gcr.io/${{ secrets.GCR_DEV_PROJECT_ID }}/${{ secrets.GCR_DEV_APP_NAME }}-ver-{{ github.sha }}
         steps:
         
+        - name: Replace python 3 to 2.7
+          run: sudo cp /usr/bin/python2.7 /usr/bin/python
+
         - name: Check Out Repo 
           uses: actions/checkout@v2
         
@@ -29,9 +32,6 @@ jobs:
 
         - name: Checkout repository
           uses: actions/checkout@v2
-
-        - name: Replace python 3 to 2.7
-          run: sudo cp /usr/bin/python2.7 /usr/bin/python
 
         - name: Install dep
           run: sudo pip install virtualenv virtualenvwrapper        
