@@ -30,9 +30,12 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v2
             
-        - name: ls /usr/bin/
-          run: ls -lh /usr/bin/  
+        - name: ls dir
+          run: ls -lh   
         
+        - name: ls project dir
+          run: ls -lh  django/notejam/
+
         - name: Install dep
           run: sudo pip install virtualenv virtualenvwrapper        
         
