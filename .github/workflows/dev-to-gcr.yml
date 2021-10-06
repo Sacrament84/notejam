@@ -30,11 +30,14 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v2
 
+        - name: change python version
+          run: sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+
         - name: Install dep
-          run: sudo pip3 install virtualenv virtualenvwrapper        
+          run: sudo pip install virtualenv virtualenvwrapper        
         
         - name: Install req
-          run: sudo pip3 install -r django/requirements.txt       
+          run: sudo pip install -r django/requirements.txt       
         
         - name: Sync DB 
           run: sudo /usr/bin/python django/notejam/manage.py syncdb --noinput
