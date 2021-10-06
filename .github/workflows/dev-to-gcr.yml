@@ -35,18 +35,18 @@ jobs:
 
         - name: check python version
           run: sudo python --version
-
-        - name: install venv
-          run: sudo apt-get install -y python-venv
         
         - name: Install dep
-          run: pip install virtualenv virtualenvwrapper        
-        
-        - name: run venv
-          run: python -m venv env
+          run: pip install virtualenv virtualenvwrapper
           
         - name: run venv
-          run: source env/bin/activate
+          run: virtualenv -p /usr/bin/python2.7 venv
+        
+        #- name: run venv
+        #  run: python -m venv env
+          
+        - name: run venv
+          run: source venv/bin/activate
 
         - name: Install req
           run: pip install -r django/requirements.txt       
