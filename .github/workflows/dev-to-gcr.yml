@@ -39,17 +39,23 @@ jobs:
         - name: Install dep
           run: pip install virtualenv virtualenvwrapper        
         
+        - name: run venv
+          run: python -m venv env
+          
+        - name: run venv
+          run: source env/bin/activate
+
         - name: Install req
           run: pip install -r django/requirements.txt       
         
         - name: Sync DB 
-          run: /usr/bin/python django/notejam/manage.py syncdb --noinput
+          run: python django/notejam/manage.py syncdb --noinput
 
         - name: Migrate
-          run: /usr/bin/python django/notejam/manage.py migrate --noinput 
+          run: python django/notejam/manage.py migrate --noinput 
         
         - name: Run Test
-          run: /usr/bin/python django/notejam/manage.py test
+          run: python django/notejam/manage.py test
           
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
