@@ -40,8 +40,8 @@ jobs:
         - name: Install req
           run: pip install -r django/requirements.txt
 
-        - name: ls39
-          run: ls -lh /usr/lib/python3.9/dist-packages/
+        - name: ls38
+          run: ls -lh /usr/lib/python3.8/dist-packages/
         
         - name: ls38
           run: ls -lh /usr/local/lib/python3.8/dist-packages/  
