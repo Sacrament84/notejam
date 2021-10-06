@@ -11,7 +11,8 @@ jobs:
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
-          IMAGE_NAME: gcr.io/${{ secrets.GCR_DEV_PROJECT_ID }}/${{ secrets.GCR_DEV_APP_NAME }}-ver-{{ github.sha }}
+
+          IMAGE_NAME: gcr.io/${{ secrets.GCR_DEV_PROJECT_ID }}/${{ secrets.GCR_DEV_APP_NAME }}-ver-${{ github.sha }}
         steps:
 
         - name: Check Out Repo 
@@ -58,7 +59,7 @@ jobs:
         #  run: python django/notejam/manage.py test
           
         - name: Build Docker image
-          run: docker build -t $IMAGE_NAME .
+          run: docker build . -t $IMAGE_NAME
 
         - name: RUN Docker image
           run: docker run -t $IMAGE_NAME -p 80:8000
