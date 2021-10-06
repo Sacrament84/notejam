@@ -46,8 +46,8 @@ jobs:
           run: source venv/bin/activate
       
         - name: Install req
-          run: pip install -r django/requirements.txt
-           
+          run: pip install django
+                     
         - name: Checkout repository
           uses: actions/checkout@v2       
 
