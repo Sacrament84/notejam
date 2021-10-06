@@ -46,25 +46,25 @@ jobs:
           run: source venv/bin/activate
       
         - name: Install req
-          run: pip install django
-                     
-        - name: Checkout repository
-          uses: actions/checkout@v2       
-
+          run: pip install -r django/requirements.txt
+      
         - name: check python version
           run: python --version
         
-        - name: Sync DB 
-          run: python django/notejam/manage.py syncdb --noinput
+        #- name: Sync DB 
+        #  run: python django/notejam/manage.py syncdb --noinput
 
-        - name: Migrate
-          run: python django/notejam/manage.py migrate --noinput 
+        #- name: Migrate
+        #  run: python django/notejam/manage.py migrate --noinput 
         
-        - name: Run Test
-          run: python django/notejam/manage.py test
+        #- name: Run Test
+        #  run: python django/notejam/manage.py test
           
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
+
+        - name: RUN Docker image
+          run: docker run -t $IMAGE_NAME -p 80:8000
 
         - name: Push Docker image
           run: docker push $IMAGE_NAME
