@@ -40,6 +40,9 @@ jobs:
         - name: Install req
           run: pip install -r django/requirements.txt
 
+        - name: ls
+          run: ls -lh /usr/lib/
+
         - name: Copy module django to python2.7
           run: sudo cp -r /usr/local/lib/python3.9/dist-packages/django/ /usr/local/lib/python2.7/dist-packages/
 
