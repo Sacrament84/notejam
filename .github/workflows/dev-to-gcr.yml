@@ -29,12 +29,9 @@ jobs:
 
         - name: Checkout repository
           uses: actions/checkout@v2
-            
-        - name: ls dir
-          run: ls -lh   
-        
-        - name: ls project dir
-          run: ls -lh  django/notejam/
+
+        - name: Replace python 3 to 2.7
+          run: sudo cp /usr/bin/python2.7 /usr/bin/python
 
         - name: Install dep
           run: sudo pip install virtualenv virtualenvwrapper        
