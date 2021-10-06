@@ -15,7 +15,7 @@ jobs:
         steps:
 
         - name: Replace python 3 to 2.7
-          run: sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 10
+          run: sudo echo 'alias python="/usr/bin/python2.7"' >> ~/.bashrc
 
         - name: Check Out Repo 
           uses: actions/checkout@v2
