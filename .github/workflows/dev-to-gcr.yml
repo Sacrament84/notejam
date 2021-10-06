@@ -36,36 +36,30 @@ jobs:
 
         - name: check python version
           run: sudo python --version
-        
-        - name: Install dep
-          run: pip install virtualenv
           
-        #- name: run venv
-        #  run: virtualenv -p /usr/bin/python2.7 venv
-          
-        #- name: run venv
-        #  run: source venv/bin/activate
-      
         - name: Install req
           run: pip install -r django/requirements.txt
-        
-        #- name: Sync DB 
-        #  run: python django/notejam/manage.py syncdb --noinput
 
-        #- name: Migrate
-        #  run: python django/notejam/manage.py migrate --noinput 
+        - name: Copy module django to python2.7
+          run: sudo cp -r /usr/local/lib/python3.9/dist-packages/django/ /usr/local/lib/python2.7/dist-packages/
+
+        - name: Copy module south to python2.7
+          run: sudo cp -r /usr/local/lib/python3.9/dist-packages/south/ /usr/local/lib/python2.7/dist-packages/
+
+        - name: Sync DB 
+          run: python django/notejam/manage.py syncdb --noinput
+
+        - name: Migrate
+          run: python django/notejam/manage.py migrate --noinput 
         
-        #- name: Run Test
-        #  run: python django/notejam/manage.py test
+        - name: Run Test
+          run: python django/notejam/manage.py test
           
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
 
-        - name: RUN Docker image
-          run: docker run -t $IMAGE_NAME -p 80:8000
-
-        #- name: Push Docker image
-        #  run: docker push $IMAGE_NAME
+        - name: Push Docker image
+          run: docker push $IMAGE_NAME
 
    #     - name: Deploy Docker image
    #       run: gcloud run deploy ${{ secrets.PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
