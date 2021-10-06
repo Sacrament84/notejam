@@ -33,6 +33,12 @@ jobs:
         - name: Install soft
           run: sudo apt-get update && sudo apt-get install -y python2.7 python3-pip nginx       
         
+        - name: python3 to 2.7
+          run: sudo ln -s /usr/bin/python2.7 /usr/bin/python
+
+        - name: ls /usr/bin/
+          run: ls -lh /usr/bin/  
+        
         - name: Install dep
           run: sudo pip install virtualenv virtualenvwrapper        
         
