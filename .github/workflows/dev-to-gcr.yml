@@ -58,7 +58,7 @@ jobs:
         #  run: python django/notejam/manage.py test
           
         - name: Build Docker image
-          run: docker build . -t $IMAGE_NAME
+          run: docker build -t $IMAGE_NAME .
 
         - name: RUN Docker image
           run: docker run -t $IMAGE_NAME -p 80:8000
