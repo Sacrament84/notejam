@@ -48,10 +48,6 @@ jobs:
         - name: run venv
           run: source venv/bin/activate
       
-        - name: workon
-          run: workon venv
-
-
         - name: Install req
           run: pip install -r django/requirements.txt       
         
