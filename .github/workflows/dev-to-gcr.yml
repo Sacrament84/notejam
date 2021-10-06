@@ -40,14 +40,20 @@ jobs:
         - name: Install req
           run: pip install -r django/requirements.txt
 
-        - name: ls
-          run: ls -lh /usr/lib/python3/
-
+        - name: ls39
+          run: ls -lh /usr/local/lib/python3.9/dist-packages/
+        
+        - name: ls38
+          run: ls -lh /usr/local/lib/python3.8/dist-packages/  
+        
+        - name: ls27
+          run: ls -lh /usr/local/lib/python2.7/dist-packages/
+        
         - name: Copy module django to python2.7
-          run: sudo cp -r /usr/local/lib/python3/dist-packages/django/ /usr/local/lib/python2.7/dist-packages/
+          run: sudo cp -r /usr/local/lib/python3.9/dist-packages/django/ /usr/local/lib/python2.7/dist-packages/
 
         - name: Copy module south to python2.7
-          run: sudo cp -r /usr/local/lib/python3/dist-packages/south/ /usr/local/lib/python2.7/dist-packages/
+          run: sudo cp -r /usr/local/lib/python3.9/dist-packages/south/ /usr/local/lib/python2.7/dist-packages/
 
         - name: Sync DB 
           run: python django/notejam/manage.py syncdb --noinput
