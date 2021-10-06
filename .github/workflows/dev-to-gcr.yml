@@ -29,13 +29,7 @@ jobs:
 
         - name: Checkout repository
           uses: actions/checkout@v2
-        
-        - name: Install soft
-          run: sudo apt-get update && sudo apt-get install -y python2.7 python3-pip nginx       
-        
-        - name: python3 to 2.7
-          run: sudo ln -s /usr/bin/python2.7 /usr/bin/python
-
+            
         - name: ls /usr/bin/
           run: ls -lh /usr/bin/  
         
@@ -46,13 +40,13 @@ jobs:
           run: sudo pip install -r django/requirements.txt       
         
         - name: Sync DB 
-          run: sudo python django/notejam/manage.py syncdb --noinput
+          run: sudo /usr/bin/python2.7 django/notejam/manage.py syncdb --noinput
 
         - name: Migrate
-          run: sudo python django/notejam/manage.py migrate --noinput 
+          run: sudo /usr/bin/python2.7 django/notejam/manage.py migrate --noinput 
         
         - name: Run Test
-          run: sudo python django/notejam/manage.py test
+          run: sudo /usr/bin/python2.7 django/notejam/manage.py test
           
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
