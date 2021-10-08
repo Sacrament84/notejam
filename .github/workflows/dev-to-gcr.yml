@@ -66,3 +66,4 @@ jobs:
 
         - name: Recreate Instances
           run: gcloud compute --project "${{ secrets.GCR_DEV_PROJECT_ID }}" instance-groups managed recreate-instances  "instance-group-1" --zone "europe-west4-a" --instances "instance-group-1-fb9k"
+          #end
