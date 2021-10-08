@@ -4,16 +4,17 @@ on:
   push:
     branches: [ staging ]
 
- jobs:
+jobs:
 
     deploy:
     
         name: Setup Gcloud Account
         runs-on: ubuntu-latest
         env:
-          IMAGE_NAME: gcr.io/${{ secrets.GCR_DEV_PROJECT_ID }}/${{ secrets.GCR_DEV_APP_NAME }}-ver-{{ github.sha }}
+
+          IMAGE_NAME: gcr.io/${{ secrets.GCR_DEV_PROJECT_ID }}/${{ secrets.GCR_DEV_APP_NAME }}-ver-${{ github.sha }}
         steps:
-        
+
         - name: Check Out Repo 
           uses: actions/checkout@v2
         
@@ -29,9 +30,27 @@ on:
 
         - name: Checkout repository
           uses: actions/checkout@v2
+
+        - name: change python version
+          run: sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
           
+        - name: Install req
+          run: pip install -r django/requirements.txt
+
+        - name: Copy module django to python2.7
+          run: sudo cp -r /home/runner/.local/lib/python3.8/site-packages/django/ /usr/local/lib/python2.7/dist-packages/
+
+        - name: Copy module south to python2.7
+          run: sudo cp -r /home/runner/.local/lib/python3.8/site-packages/south/ /usr/local/lib/python2.7/dist-packages/
+
+        - name: Sync DB 
+          run: python django/notejam/manage.py syncdb --noinput
+
+        - name: Migrate
+          run: python django/notejam/manage.py migrate --noinput 
+        
         - name: Run Test
-          run: python /app/django/notejam/manage.py
+          run: python django/notejam/manage.py test
           
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
