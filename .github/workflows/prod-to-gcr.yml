@@ -37,5 +37,12 @@ jobs:
         - name: Push Docker image
           run: docker push $IMAGE_NAME
 
-   #     - name: Deploy Docker image
-   #       run: gcloud run deploy ${{ secrets.PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
+        - name: Create New Instance Template
+          run: gcloud compute instance-templates create-with-container instance-template-${{ github.run_number }} --tags=port8000 --container-image=$IMAGE_NAME:latest
+        
+        - name: Edit Instance Group with new Instance Template
+          run: gcloud compute instance-groups managed set-instance-template instance-group-1 --zone=us-central1-a --template=instance-template-${{ github.run_number }}.
+
+        - name: Recreate Instances
+          run: gcloud compute --project "${{ secrets.PROJECT_ID }}" instance-groups managed recreate-instances  "instance-group-1" --zone "us-central1-a" --instances "instance-group-1-v57p"
+          
